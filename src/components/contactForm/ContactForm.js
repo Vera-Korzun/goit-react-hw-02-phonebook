@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 
 class ContactForm extends Component {
   state = {
-    id: uuidv4(),
     name: "",
     number: "",
   };
@@ -15,7 +14,7 @@ class ContactForm extends Component {
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    this.props.onHandlerSubmit({ ...this.state });
+    this.props.onHandlerSubmit({ ...this.state, id: uuidv4() });
     this.setState({ name: "", number: "" });
   };
 
