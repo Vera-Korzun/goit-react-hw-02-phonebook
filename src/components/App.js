@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import ContactForm from "./contactForm/ContactForm";
 import ContactList from "./contactList/ContactList";
 import Filter from "./filter/Filter";
+import AppWrapper from "./AppStyled";
 uuidv4();
 
 class App extends Component {
@@ -57,18 +58,18 @@ class App extends Component {
     const { contacts, filter } = this.state;
 
     return (
-      <>
-        <h2>PhoneBook</h2>
+      <AppWrapper>
+        <h2 className="phonebook-title">PhoneBook</h2>
         <ContactForm onHandlerSubmit={this.onHandlerSubmit} />
 
-        <h2>Contacts</h2>
+        <h2 className="phonebook-title">Contacts</h2>
         <Filter value={filter} onChangeFilter={this.onChangeFilter} />
         <ContactList
           contacts={contacts}
           filter={filter}
           deleteContactById={this.deleteContactById}
         />
-      </>
+      </AppWrapper>
     );
   }
 }

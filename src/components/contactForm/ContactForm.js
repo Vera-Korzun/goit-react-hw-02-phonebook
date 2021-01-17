@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { v4 as uuidv4 } from "uuid";
+import FormContact from "./ContactFormStyled";
 
 class ContactForm extends Component {
   state = {
@@ -22,29 +23,33 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     //const { name } = this.state;
     return (
-      <>
-        <form onSubmit={this.onHandleSubmit}>
-          <label>
+      <FormContact>
+        <form className="contact-form" onSubmit={this.onHandleSubmit}>
+          <label className="contact-form__title">
             Name
             <input
+              className="contact-form__imput"
               type="text"
               value={name}
               name="name"
               onChange={this.onHandleChange}
             />
           </label>
-          <label>
+          <label className="contact-form__title">
             Number
             <input
+              className="contact-form__imput"
               type="text"
               value={number}
               name="number"
               onChange={this.onHandleChange}
             />
           </label>
-          <button type="submit">Add contact</button>
+          <button className="contact-form__btn" type="submit">
+            Add contact
+          </button>
         </form>
-      </>
+      </FormContact>
     );
   }
 }

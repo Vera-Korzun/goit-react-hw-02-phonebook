@@ -1,12 +1,14 @@
 import React from "react";
+import FornFilter from "./FilterSryled";
 
 const Filter = ({ value, onChangeFilter }) => {
   return (
-    <>
-      <form>
-        <label>
+    <FornFilter>
+      <form className="filter-form">
+        <label className="filter-form__title">
           Find contact by name
           <input
+            className="filter-form__imput"
             type="text"
             name="filter"
             value={value}
@@ -14,7 +16,7 @@ const Filter = ({ value, onChangeFilter }) => {
           />
         </label>
       </form>
-    </>
+    </FornFilter>
   );
 };
 
