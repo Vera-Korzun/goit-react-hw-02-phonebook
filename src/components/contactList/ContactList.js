@@ -1,21 +1,20 @@
 import React from "react";
+import ContactListItem from "./ContactListItem";
 
-const ContactList = ({ contacts, deleteContactById }) => {
+const ContactList = ({ contacts, filter, deleteContactById }) => {
   return (
     <ul>
-      {contacts.map((contact) => (
-        <li key={contact.id}>
-          <span>Name: {contact.name}</span>
-          <span>Number: {contact.number}</span>
-          <button
-            type="button"
-            data-id={contact.id}
-            onClick={deleteContactById}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
+      {contacts
+        .filter((contact) =>
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+        )
+        .map((contact) => (
+          <ContactListItem
+            key={contact.id}
+            contact={contact}
+            deleteContactById={deleteContactById}
+          />
+        ))}
     </ul>
   );
 };

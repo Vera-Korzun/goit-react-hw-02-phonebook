@@ -8,18 +8,38 @@ uuidv4();
 class App extends Component {
   state = {
     contacts: [
-      // { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      // { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      // { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      // { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
     ],
     filter: "",
   };
 
-  onHandlerSubmit = (data) => {
-    this.setState((prev) => ({
-      contacts: [...prev.contacts, data],
-    }));
+  onHandlerSubmit = (contact) => {
+    if (this.state.contacts.some((item) => item.name === contact.name)) {
+      alert(`${contact.name} is already in contacts`);
+      return;
+    }
+
+    if (this.state.contacts.some((item) => item.number === contact.number)) {
+      alert(`Contact with number ${contact.number} is already in contacts`);
+      return;
+    }
+
+    if (!contact.name.length) {
+      alert("Please, enter a name");
+      return;
+    }
+    if (!contact.number.length) {
+      alert("Please, enter a number");
+      return;
+    }
+    this.setState((prev) => {
+      return {
+        contacts: [...prev.contacts, contact],
+      };
+    });
   };
 
   deleteContactById = (e) => {
@@ -31,12 +51,6 @@ class App extends Component {
 
   onChangeFilter = (e) => {
     this.setState({ filter: e.target.value });
-  };
-
-  getfilterContact = () => {
-    return this.state.contacts.filter((item) =>
-      item.contact.toLowerCase().includes(this.state.filter.toLowerCase())
-    );
   };
 
   render() {
@@ -51,6 +65,7 @@ class App extends Component {
         <Filter value={filter} onChangeFilter={this.onChangeFilter} />
         <ContactList
           contacts={contacts}
+          filter={filter}
           deleteContactById={this.deleteContactById}
         />
       </>
