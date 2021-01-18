@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ContactListItem from "./ContactListItem";
 import ContactsWrapper from "./ContactsStyled";
 
@@ -23,3 +24,9 @@ const ContactList = ({ contacts, filter, deleteContactById }) => {
 };
 
 export default ContactList;
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object),
+  filter: PropTypes.string,
+  deleteContactById: PropTypes.func,
+};

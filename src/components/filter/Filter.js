@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FornFilter from "./FilterSryled";
 
 const Filter = ({ value, onChangeFilter }) => {
@@ -21,3 +22,8 @@ const Filter = ({ value, onChangeFilter }) => {
 };
 
 export default Filter;
+
+Filter.propTypes = {
+  value: PropTypes.string,
+  onChangeFilter: PropTypes.func,
+};
